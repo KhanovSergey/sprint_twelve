@@ -1,5 +1,9 @@
 
 В Windows:
+Команда для установки виртуального окружения на Windows:
+```
+...Dev/api_yamdb$ python -m venv venv
+
 ```
 ...Dev/api_yamdb$ source venv/Scripts/activate 
 ```
