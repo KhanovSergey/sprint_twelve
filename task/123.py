@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Stack:
     def __init__(self):
         self.items = []
@@ -40,3 +41,22 @@ print(stack.pop())
 #     matrix = ''
 #     matrix_input = [matrix + input() for _ in range(4)]
 #     print(main())
+=======
+def main():
+    mat = []
+    for i in range(m_input):
+        for j in range(n_input):
+            # print(matrix[j][i], end=' ')
+            mat = mat.append(matrix[j][i], end=' ')
+        # print('')
+        return mat
+
+
+if __name__ == '__main__':
+    n_input = int(input())
+    m_input = int(input())
+    matrix = ''
+    matrix = [input().split(' ') for _ in range(n_input)]
+    # main()
+    print(main())
+>>>>>>> 8c95a69 (Task a solved.)
