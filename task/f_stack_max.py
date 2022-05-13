@@ -15,18 +15,16 @@ class StackMax:
     def isEmpty(self):
         return self.items == []
 
+    def get_max(self):
+        if self.isEmpty():
+            return 'None'
+        return self.max[len(self.items) - 1]
 
-def get_max(self):
-    if self.isEmpty():
-        return 'None'
-    return self.max[len(self.items) - 1]
-
-
-def pop(self):
-    if self.isEmpty():
-        return 'error'
-    self.max.pop()
-    return self.items.pop()
+    def pop(self):
+        if self.isEmpty():
+            return 'error'
+        self.max.pop()
+        return self.items.pop()
 
 
 def main():
@@ -37,16 +35,14 @@ def main():
         if n_stack[0] == 'push':
             st_max.push(n_stack[1])
         if n_stack[0] == 'pop':
-            if pop(st_max) == 'error':
+            if st_max.pop() == 'error':
                 res.append('error')
         if n_stack[0] == 'get_max':
-            res.append(get_max(st_max))
-
-    for i in res:
-        print(i)
+            res.append(st_max.get_max())
+    return res
 
 
 if __name__ == '__main__':
     n = int(input())
-    main()
-
+    for i in main():
+        print(i)
