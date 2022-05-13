@@ -1,36 +1,26 @@
 class StackMax:
     def __init__(self):
         self.items = []
-        self.max = []
-
-    def isEmpty(self):
-        return self.items == []
 
     def push(self, item):
-        if len(self.items) == 0:
-            self.max.append(int(item))
-        elif int(item) > self.max[len(self.items) - 1]:
-            self.max.append(int(item))
-        else:
-            self.max.append(self.max[len(self.items) - 1])
         self.items.append(item)
 
+    def pop(self):
+        return self.items.pop()
 
-def pop(self):
-    if self.isEmpty():
-        return 'error'
-    self.max.pop()
-    return self.items.pop()
+    def peek(self):
+        return self.items[-1]
 
-
-def get_max(self):
-    if self.isEmpty():
-        return 'None'
-    return self.max[len(self.items) - 1]
+    def size(self):
+        return len(self.items)
 
 
-s = StackMax()
-# n = int(input())
+# stack = StackMax()
+# stack.push('apple')
+# stack.push('banana')
+# stack.push('orange')
+#
+# print(stack.pop())
 
 n = 8
 n_stack = ['get_max',
@@ -42,15 +32,30 @@ n_stack = ['get_max',
            'get_max',
            'get_max'
            ]
-result = []
-for i in range(n):
-    command = input().split()
-    if command[0] == 'push':
-        s.push(command[1])
-    if command[0] == 'pop':
-        if pop(s) == 'error':
-            result.append('error')
-    if command[0] == 'get_max':
-        result.append(get_max(s))
-for i in result:
-    print(i)
+stack = StackMax()
+for i in range(len(n_stack)):
+    stack.push(n_stack[i])
+
+print(stack.size())
+print(stack.peek())
+# stack.push(n_stack[0])
+# stack.push(n_stack[1])
+# stack.push(n_stack[2])
+
+# print(stack.pop())
+# print(stack.pop())
+# print(stack.pop())
+# def main():
+#     valid_keys(keys_input)
+#     keys_int = int(keys_input) * 2
+#
+#     matrix = ''.join(matrix_input)
+#     valid_matrix(matrix)
+#     return data_count(keys_int, matrix)
+#
+#
+# if __name__ == '__main__':
+#     keys_input = input()
+#     matrix = ''
+#     matrix_input = [matrix + input() for _ in range(4)]
+#     print(main())
