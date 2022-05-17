@@ -45,6 +45,7 @@
 
 import math
 
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -52,7 +53,7 @@ class Stack:
     def push(self, item):
         self.items.append(item)
 
-    def pop(self): #- 8:9
+    def pop(self):  # - 8:9
         try:
             return self.items.pop()
         except IndexError:
@@ -67,12 +68,15 @@ OPERATORS = {'+': lambda x, y: x + y,
              '*': lambda x, y: x * y,
              '/': lambda x, y: x / y,
              '%': lambda x, y: x % y,
-             '^': lambda x, y: x ** y}
+             '^': lambda x, y: x ** y
+             }
 
-def MyInt(value):
-    if isinstance(value, str):
-        return int(value)
-    return math.floor(value)
+
+# def MyInt(value):
+#     if isinstance(value, str):
+#         return int(value)
+#     return math.floor(value)
+
 
 def calculator(line, stack=None, converter=int, operators=OPERATORS):
     stack = Stack() if stack is None else stack
@@ -87,9 +91,10 @@ def calculator(line, stack=None, converter=int, operators=OPERATORS):
                 raise TypeError(f'Неподдерживаемая операция "{element}" для типа {converter.__name__}.')
         else:
             try:
-                stack.push(converter(element)) #- 29 строка
+                stack.push(converter(element))  # - 29 строка
             except:
-                raise KeyError(f'Невозможно преобразовать "{element}" в {converter.__name__} или неподдерживаемая операция.')
+                raise KeyError(
+                    f'Невозможно преобразовать "{element}" в {converter.__name__} или неподдерживаемая операция.')
     if stack.size() > 1:
         raise IndexError('Некорректное выражение - в стеке остались элементы.')
     return stack.pop()
@@ -97,9 +102,11 @@ def calculator(line, stack=None, converter=int, operators=OPERATORS):
 
 if __name__ == '__main__':
     # from decimal import Decimal
+
     line = input().split()
     print(calculator(line))
-    # for line in ("10 2 4 * -", "12 5 /", "-1 3 /", "1.5 3.7 + 2.1 *", "2+3j -5-7j *", "2 3 ^ 3 %", "2 0 /", "1 2 3 +", "1 2 + *"):
+    # for line in (
+    # "10 2 4 * -", "12 5 /", "-1 3 /", "1.5 3.7 + 2.1 *", "2+3j -5-7j *", "2 3 ^ 3 %", "2 0 /", "1 2 3 +", "1 2 + *"):
     #     print(f'\n Выражение : "{line}"')
     #     line = line.split()
     #     for t in (int, MyInt, float, complex, Decimal):
