@@ -46,7 +46,7 @@ class Dek:
         return x
 
 
-def main():
+def main(n, m):
     queue = Dek(m)
     commands = {
         'push_front': queue.push_front,
@@ -76,7 +76,7 @@ def main():
 if __name__ == '__main__':
     n = int(input())
     m = int(input())
-    main()
+    main(n, m)
 
 
 # class Dek:

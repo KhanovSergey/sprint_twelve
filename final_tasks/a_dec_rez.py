@@ -1,7 +1,5 @@
+
 # https://ru.stackoverflow.com/questions/1383676/Дек-задача-на-python-Помогите-разобрать-решение-задачи
-import sys
-
-
 class Dek:
     def __init__(self, max_size: int):
         self._elements = [None] * max_size
@@ -48,16 +46,18 @@ class Dek:
         return x
 
 
-def main():
-    # queue = Dek(m)
+def main(n, m):
+    queue = Dek(m)
     commands = {
         'push_front': queue.push_front,
         'push_back': queue.push_back,
         'pop_front': queue.pop_front,
         'pop_back': queue.pop_back,
     }
-    for i in range(n):
-        operation, *value = res.split()
+
+    for _ in range(n):
+        command = input()
+        operation, *value = command.split()
         if value:
             try:
                 result = commands[operation](int(*value))
@@ -75,14 +75,9 @@ def main():
 
 if __name__ == '__main__':
     n = int(input())
-    # m = int(input())
-    queue = Dek(int(input()))
-    res = []
-    for _ in range(n):
-        n_stack = input().split()
-        res.append(n_stack)
-    print(res)
-    main()
+    m = int(input())
+    main(n, m)
+
 
 # class Dek:
 #     def __init__(self, max_size: int):
@@ -139,22 +134,22 @@ if __name__ == '__main__':
 #         'pop_back': queue.pop_back,
 #     }
 #
-# for _ in range(n):
-#     command = input()
-#     operation, *value = command.split()
-#     if value:
-#         try:
-#             result = commands[operation](int(*value))
-#             if result is not None:
-#                 print(result)
-#         except OverflowError:
-#             print('error')
-#     else:
-#         try:
-#             result = commands[operation]()
-#             print(result)
-#         except IndexError:
-#             print('error')
+    # for _ in range(n):
+    #     command = input()
+    #     operation, *value = command.split()
+    #     if value:
+    #         try:
+    #             result = commands[operation](int(*value))
+    #             if result is not None:
+    #                 print(result)
+    #         except OverflowError:
+    #             print('error')
+    #     else:
+    #         try:
+    #             result = commands[operation]()
+    #             print(result)
+    #         except IndexError:
+    #             print('error')
 #
 #
 # if __name__ == '__main__':
