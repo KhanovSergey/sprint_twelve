@@ -1,6 +1,6 @@
 import unittest
 
-from a_dec import Dek
+from final_tasks.a_dec import Dek
 
 
 class StackTester(unittest.TestCase):

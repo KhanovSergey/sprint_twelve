@@ -1,29 +1,35 @@
 class Stack:
     def __init__(self):
         self.items = []
+        self.size = 0
 
     def push(self, item):
+        self.size += 1
         self.items.append(item)
 
-    def pop(self):  # - 8:9
-        try:
+    def pop(self):
+        if self.is_empty:
+            raise NoItemsException
+        else:
+            self.size -= 1
             return self.items.pop()
-        except IndexError:
-            raise IndexError('Недостаточно переменных или значений,'
-                             ' над которыми проводится операция.')
 
-    def size(self):
-        return len(self.items)
+    @property
+    def is_empty(self):
+        return self.size == 0
+
+
+class NoItemsException(Exception):
+    def __init__(self):
+        pass
 
 
 OPERATORS = {
-             '+': lambda x, y: x + y,
-             '-': lambda x, y: x - y,
-             '*': lambda x, y: x * y,
-             '/': lambda x, y: x / y,
-             '%': lambda x, y: x % y,
-             '^': lambda x, y: x ** y
-             }
+    '+': lambda x, y: x + y,
+    '-': lambda x, y: x - y,
+    '*': lambda x, y: x * y,
+    '/': lambda x, y: x / y,
+}
 
 
 def calculator(line, stack=None, converter=int, operators=OPERATORS):
@@ -43,11 +49,13 @@ def calculator(line, stack=None, converter=int, operators=OPERATORS):
             except:
                 raise KeyError(
                     f'Невозможно преобразовать {element} в {converter.__name__} или неподдерживаемая операция.')
-    if stack.size() > 1:
-        raise IndexError('Некорректное выражение - в стеке остались элементы.')
+    # if stack.size() > 1:
+    #     raise IndexError('Некорректное выражение - в стеке остались элементы.')
     return stack.pop()
 
 
 if __name__ == '__main__':
-    line = input().split()
+    # line = input().split()
+    line = ['2', '5', '-', '4', '/']
+    print(line)
     print(calculator(line))

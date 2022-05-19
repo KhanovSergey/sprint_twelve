@@ -1,6 +1,6 @@
 import pytest
 
-from l_fibonacci_modulo import fibonacciModulo
+from task.l_fibonacci_modulo import fibonacciModulo
 
 
 @pytest.mark.parametrize(
