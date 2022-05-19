@@ -46,6 +46,7 @@
 import math
 
 
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -57,18 +58,20 @@ class Stack:
         try:
             return self.items.pop()
         except IndexError:
-            raise IndexError('Недостаточно операндов для вычисления.')
+            raise IndexError('Недостаточно переменных или значений,'
+                             ' над которыми проводится операция.')
 
     def size(self):
         return len(self.items)
 
 
-OPERATORS = {'+': lambda x, y: x + y,
-             '-': lambda x, y: x - y,
+OPERATORS = {
              '*': lambda x, y: x * y,
              '/': lambda x, y: x / y,
              '%': lambda x, y: x % y,
-             '^': lambda x, y: x ** y
+             '^': lambda x, y: x ** y,
+             '+': lambda x, y: x + y,
+             '-': lambda x, y: x - y,
              }
 
 
@@ -86,15 +89,15 @@ def calculator(line, stack=None, converter=int, operators=OPERATORS):
             try:
                 stack.push(converter(operators[element](el2, el1)))
             except ZeroDivisionError:
-                raise ZeroDivisionError(f'Деление на 0 при вычислении "{el2} {element} {el1}".')
+                raise ZeroDivisionError(f'Деление на 0 при вычислении {el2} {element} {el1}.')
             except TypeError:
-                raise TypeError(f'Неподдерживаемая операция "{element}" для типа {converter.__name__}.')
+                raise TypeError(f'Неподдерживаемая операция {element} для типа {converter.__name__}.')
         else:
             try:
-                stack.push(converter(element))  # - 29 строка
+                stack.push(converter(element))
             except:
                 raise KeyError(
-                    f'Невозможно преобразовать "{element}" в {converter.__name__} или неподдерживаемая операция.')
+                    f'Невозможно преобразовать {element} в {converter.__name__} или неподдерживаемая операция.')
     if stack.size() > 1:
         raise IndexError('Некорректное выражение - в стеке остались элементы.')
     return stack.pop()
