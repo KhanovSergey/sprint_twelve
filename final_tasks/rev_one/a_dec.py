@@ -2,12 +2,20 @@
 ID 68489898
 """
 class Queue:
+
     def __init__(self, n):
         self.queue = [None] * n
         self.max_n = n
         self.head = 0
         self.tail = 0
         self.size = 0
+
+        self.COMMANDS = {
+            'push_front': self.push_front,
+            'push_back': self.push_back,
+            'pop_front': self.pop_front,
+            'pop_back': self.pop_back
+        }
 
     def is_empty(self):
         return self.size == 0
@@ -49,27 +57,20 @@ class Queue:
 
 def main():
     queue = Queue(m)
-    commands = {
-        'push_front': queue.push_front,
-        'push_back': queue.push_back,
-        'pop_front': queue.pop_front,
-        'pop_back': queue.pop_back
-    }
 
     for _ in range(n):
         command = input()
         operation, *value = command.split()
         if value:
             try:
-                print(commands[operation])
-                result = commands[operation](int(*value))
+                result = queue.COMMANDS[operation](int(*value))
                 if result is not None:
                     print(result)
             except OverflowError:
                 print('error')
         else:
             try:
-                result = commands[operation]()
+                result = queue.COMMANDS[operation]()
                 print(result)
             except IndexError:
                 print('error')
@@ -79,4 +80,3 @@ if __name__ == '__main__':
     n = int(input())
     m = int(input())
     main()
-# command = (queue.push_back(input().split()) for _ in range(m))
