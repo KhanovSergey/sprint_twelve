@@ -58,7 +58,7 @@ class Queue:
         return qh
 
 
-def valid_count_command(n):
+def valid_count_comm(n):
     try:
         int(n)
     except ValueError:
@@ -76,18 +76,8 @@ def valid_max_dec(m):
         sys.exit(1)
 
 
-def valid_command(operation, value):
-    oper = {'pop_back', 'pop_front', 'push_back', 'push_front'}
-    if operation in oper and abs(value) <= 1000:
-        return
-    else:
-        print(f'Необходимо ввести корректные команды и/или элементы.'
-              f'Элементы - целое число, по модулю не превосходящее 1000.')
-        sys.exit(1)
-
-
 def main():
-    valid_count_command(n)
+    valid_count_comm(n)
     valid_max_dec(m)
 
     queue = Queue(int(m))
@@ -95,9 +85,6 @@ def main():
     for _ in range(int(n)):
         command = input()
         operation, *value = command.split()
-
-        valid_command(operation, int(*value))
-
         if value:
             try:
                 result = queue.COMMANDS[operation](int(*value))
