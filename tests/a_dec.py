@@ -1,6 +1,5 @@
 """
 ID 68489898
-Code edits after the first review.
 """
 import sys
 
@@ -78,11 +77,8 @@ def valid_max_dec(m):
 
 
 def valid_command(operation, value):
-    operation_val = {'push_back', 'push_front'}
-    operation_not_val = {'pop_back', 'pop_front'}
-    if operation in operation_val and abs(value) <= 1000:
-        return
-    elif operation in operation_not_val and value is None:
+    oper = {'pop_back', 'pop_front', 'push_back', 'push_front'}
+    if operation in oper and abs(value) <= 1000:
         return
     else:
         print(f'Необходимо ввести корректные команды и/или элементы.'

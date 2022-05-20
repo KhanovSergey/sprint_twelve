@@ -1,6 +1,6 @@
 import unittest
 
-from final_tasks.a_dec import Dek
+from a_dec import Queue
 
 
 class StackTester(unittest.TestCase):
@@ -13,17 +13,17 @@ class StackTester(unittest.TestCase):
     #     self.assertEqual(4, self.size())
 
     def test_isEmpty_init(self):
-        d = Dek(max_size=4)
+        d = Queue(max_size=4)
         self.assertEqual(True, d.is_empty())
 
     def test_push_back(self):
         value = 4
-        d = Dek(value)
+        d = Queue(value)
         d.push_back(value)
         self.assertEqual(1, d._size)
 
     def test_push_pop(self):
-        d = Dek(max_size=4)
+        d = Queue(max_size=4)
         d.push_front(861)
         d.push_front(-819)
         d.pop_back()
@@ -31,7 +31,7 @@ class StackTester(unittest.TestCase):
         self.assertEqual(-819, d.pop_back())
 
     def test_push_pop_exp(self):
-        d = Dek(max_size=4)
+        d = Queue(max_size=4)
         d.push_front(861)
         d.push_front(-819)
         self.assertEqual(861, d.pop_back())
@@ -39,7 +39,7 @@ class StackTester(unittest.TestCase):
         self.assertEqual(0, d._size)
 
     def test_push_back(self):
-        d = Dek(max_size=0)
+        d = Queue(max_size=0)
         d.push_front(861)
         #d.push_front(-819)
         self.assertEqual(861, d.pop_back())
@@ -47,7 +47,7 @@ class StackTester(unittest.TestCase):
         self.assertEqual(0, d._size)
 
     def test_push_front(self):
-        d = Dek(max_size=1)
+        d = Queue(max_size=1)
         d.push_front(861)
         d.push_front(-819)
         self.assertEqual(861, d.pop_back())
@@ -55,7 +55,7 @@ class StackTester(unittest.TestCase):
         #self.assertEqual(0, d._size)
 
     def test_pop_back(self):
-        d = Dek(max_size=1)
+        d = Queue(max_size=1)
         d.push_front(861)
         # d.push_front(-819)
         self.assertEqual(861, d.pop_back())
