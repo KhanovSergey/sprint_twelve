@@ -1,6 +1,9 @@
 """
 ID 68489898
 """
+import sys
+
+
 class Queue:
 
     def __init__(self, n):
@@ -55,10 +58,31 @@ class Queue:
         return qh
 
 
-def main():
-    queue = Queue(m)
+def valid_count_comm(n):
+    try:
+        int(n)
+    except ValueError:
+        print("Необходимо ввести количество команд -"
+              "целое число не превосходящее 100000.")
+        sys.exit(1)
 
-    for _ in range(n):
+
+def valid_max_dec(m):
+    try:
+        int(m)
+    except ValueError:
+        print("Необходимо ввести максимальный размер дека -"
+              "целое число не превосходящее 50 000.")
+        sys.exit(1)
+
+
+def main():
+    valid_count_comm(n)
+    valid_max_dec(m)
+
+    queue = Queue(int(m))
+
+    for _ in range(int(n)):
         command = input()
         operation, *value = command.split()
         if value:
@@ -77,6 +101,6 @@ def main():
 
 
 if __name__ == '__main__':
-    n = int(input())
-    m = int(input())
+    n = input()
+    m = input()
     main()
