@@ -1,16 +1,17 @@
 """
-ID 68489898
+ID 68512232
+Code edits after the second review.
 """
 import sys
 
 
-class Queue:
+class Deck:
 
     def __init__(self, n):
-        self.queue = [None] * n
+        self.array = [None] * n
         self.max_n = n
         self.head = 0
-        self.tail = 0
+        self.tail = -1
         self.size = 0
 
         self.COMMANDS = {
@@ -20,42 +21,43 @@ class Queue:
             'pop_back': self.pop_back
         }
 
+    @property
     def is_empty(self):
         return self.size == 0
 
     def push_back(self, value: int):
         if self.size != self.max_n:
-            self.queue[self.tail] = value
             self.tail = (self.tail + 1) % self.max_n
+            self.array[self.tail] = value
             self.size += 1
         else:
             raise OverflowError
 
     def push_front(self, value: int):
         if self.size != self.max_n:
-            self.queue[self.head - 1] = value
             self.head = (self.head - 1) % self.max_n
+            self.array[self.head] = value
             self.size += 1
         else:
             raise OverflowError
 
     def pop_back(self):
-        if self.is_empty():
+        if self.is_empty:
             raise IndexError
-        qt = self.queue[self.tail - 1]
-        self.queue[self.tail - 1] = None
-        self.tail = (self.tail - 1) % self.max_n
-        self.size -= 1
-        return qt
+        else:
+            val = self.array[self.tail]
+            self.tail = (self.tail - 1) % self.max_n
+            self.size -= 1
+            return val
 
     def pop_front(self):
-        if self.is_empty():
+        if self.is_empty:
             raise IndexError
-        qh = self.queue[self.head]
-        self.queue[self.head] = None
-        self.head = (self.head + 1) % self.max_n
-        self.size -= 1
-        return qh
+        else:
+            val = self.array[self.head]
+            self.head = (self.head + 1) % self.max_n
+            self.size -= 1
+            return val
 
 
 def valid_count_command(n):
@@ -77,8 +79,11 @@ def valid_max_dec(m):
 
 
 def valid_command(operation, value):
-    oper = {'pop_back', 'pop_front', 'push_back', 'push_front'}
-    if operation in oper and abs(value) <= 1000:
+    OPERATION_VAL = {'push_back', 'push_front'}
+    OPERATION_NOT_VAL = {'pop_back', 'pop_front'}
+    if operation in OPERATION_VAL and abs(value) <= 1000:
+        return
+    elif operation in OPERATION_NOT_VAL:
         return
     else:
         print(f'Необходимо ввести корректные команды и/или элементы.'
@@ -90,7 +95,7 @@ def main():
     valid_count_command(n)
     valid_max_dec(m)
 
-    queue = Queue(int(m))
+    dec = Deck(int(m))
 
     for _ in range(int(n)):
         command = input()
@@ -100,14 +105,14 @@ def main():
 
         if value:
             try:
-                result = queue.COMMANDS[operation](int(*value))
+                result = dec.COMMANDS[operation](int(*value))
                 if result is not None:
                     print(result)
             except OverflowError:
                 print('error')
         else:
             try:
-                result = queue.COMMANDS[operation]()
+                result = dec.COMMANDS[operation]()
                 print(result)
             except IndexError:
                 print('error')
